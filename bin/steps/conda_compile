@@ -10,7 +10,7 @@
     bash ~/miniconda.sh -b -p $HOME/miniconda
     export PATH="$HOME/miniconda/bin:$PATH"
      conda info --envs
-    #source activate base
+    source activate root
     conda install -c anaconda dropbox
 
     # conda update conda --quiet --yes
