@@ -10,10 +10,10 @@ if [ ! -d /app/.heroku/miniconda ]; then
 fi
 
 
-if [ -f conda-requirements.txt ]; then
-    puts-step "Installing dependencies using Conda"
-    conda install --file conda-requirements.txt --yes
-fi
+#if [ -f conda-requirements.txt ]; then
+#    puts-step "Installing dependencies using Conda"
+#    conda install --file conda-requirements.txt --yes
+#fi
 
 if [ -f environment.yml ]; then
     puts-step "Creating conda environment"
