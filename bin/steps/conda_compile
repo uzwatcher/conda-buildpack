@@ -18,10 +18,12 @@ fi
 if [ -f environment.yml ]; then
     puts-step "Creating conda environment"
     # TODO: Use update if its already there
-    conda env remove --yes --quiet --name heroku-env
-    conda env create --name=heroku-env --file environment.yml
+    # conda env remove --yes --quiet --name heroku-env
+    conda remove --name dlib_aam --all
+    #conda env create --name=heroku-env --file environment.yml
+    conda env create -f environment.yml
 fi
 
 # Clean up the installation environment .
 # TODO Determine if removing packages might be bad here
-conda clean -pt --yes > /dev/null
+# conda clean -pt --yes > /dev/null
