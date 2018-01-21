@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
-CONDA_VERSION=3.8.3
-if [ ! -d /app/.heroku/miniconda ]; then
+#CONDA_VERSION=3.8.3
+#if [ ! -d /app/.heroku/miniconda ]; then
     puts-step "Preparing Python/Miniconda Environment (${CONDA_VERSION})"
-    curl -Os http://repo.continuum.io/miniconda/Miniconda-${CONDA_VERSION}-Linux-x86_64.sh
-    bash Miniconda-${CONDA_VERSION}-Linux-x86_64.sh -p /app/.heroku/miniconda/ -b | indent
-    rm -fr Miniconda-${CONDA_VERSION}-Linux-x86_64.sh
+    # curl -Os http://repo.continuum.io/miniconda/Miniconda-${CONDA_VERSION}-Linux-x86_64.sh
+    # bash Miniconda-${CONDA_VERSION}-Linux-x86_64.sh -p /app/.heroku/miniconda/ -b | indent
+    # rm -fr Miniconda-${CONDA_VERSION}-Linux-x86_64.sh
+    
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+    bash ~/miniconda.sh -b -p $HOME/miniconda
+    export PATH="$HOME/miniconda/bin:$PATH"
+    conda install -c anaconda dropbox
 
     # conda update conda --quiet --yes
-fi
+#fi
 
 
 #if [ -f conda-requirements.txt ]; then
@@ -15,14 +20,14 @@ fi
 #    conda install --file conda-requirements.txt --yes
 #fi
 
-if [ -f environment.yml ]; then
-    puts-step "Creating conda environment"
+#if [ -f environment.yml ]; then
+#    puts-step "Creating conda environment"
     # TODO: Use update if its already there
     # conda env remove --yes --quiet --name heroku-env
-    conda remove --name dlib_aam --all
+#    conda remove --name dlib_aam --all
     #conda env create --name=heroku-env --file environment.yml
-    conda env create -f environment.yml
-fi
+#    conda env create -f environment.yml
+#fi
 
 # Clean up the installation environment .
 # TODO Determine if removing packages might be bad here
